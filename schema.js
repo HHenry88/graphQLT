@@ -47,10 +47,3 @@ const RootQuery = new GraphQLObjectType({
 module.exports = new GraphQLSchema({
     query: RootQuery
 });
-
-//data
-const people = [
-    {id: '1', name: "John Doe", email: "johndoe@email.com", age: 35},
-    {id: '2', name: "Steve Mark", email: "steve@email.com", age: 20},
-    {id: '3', name: "Michelle Smith", email: "michelle@email.com", age: 30},
-]
