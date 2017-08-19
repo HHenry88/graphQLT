@@ -21,10 +21,11 @@ const PersonType = new GraphQLObjectType({
 // root Query
 const RootQuery = new GraphQLObjectType({
     name: "RootQueryType",
-    person: {
+    fields: {
+        person: {
         type: PersonType,
         args: {
-            id:{GraphQLString}
+            id:{type: GraphQLString}
         },
         resolve(parentValue, args){
             for(let i = 0; i < people.length; i++){
@@ -33,11 +34,12 @@ const RootQuery = new GraphQLObjectType({
                 }
             }
         }
+        }
     }
 });
 
 module.exports = new GraphQLSchema({
-
+    query: RootQuery
 });
 
 //data
