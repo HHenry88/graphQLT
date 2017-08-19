@@ -1,18 +1,7 @@
 const express = require('express');
-var graphqlHTTP = require('express-graphql');
-var { graphql, buildSchema } = require('graphql');
-
-var schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`);
-
-var root = {
-  hello: () => {
-    return 'Hello';
-  }
-};
+const graphqlHTTP = require('express-graphql');
+const { graphql, buildSchema } = require('graphql');
+const schema = require('./schema');
 
 var app = express();
 app.use(`/graphql`, graphqlHTTP({
@@ -21,5 +10,6 @@ app.use(`/graphql`, graphqlHTTP({
   graphiql:true
 }));
 
-app.listen(5000);
-console.log(`Running on port 5000`);
+app.listen(5000, () => {
+  console.log(`Running on port 5000`)
+});
