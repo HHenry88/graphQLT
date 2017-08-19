@@ -7,6 +7,8 @@ const {
     GraphQLNonNull
 } = require('graphql');
 
+const axios = require('axios');
+
 //Person Type
 const PersonType = new GraphQLObjectType({
     name: "Person",
@@ -28,17 +30,15 @@ const RootQuery = new GraphQLObjectType({
             id:{type: GraphQLString}
         },
         resolve(parentValue, args){
-            for(let i = 0; i < people.length; i++){
-                if(people[i].id === args.id){
-                    return people[i];
-                }
-            }
+            return axios.get(`http://localhost:3000/people/${args.id}`)
+                .then(res => res.data);
         }
         },
         people: {
             type: new GraphQLList(PersonType),
             resolve(parentValue, args){
-                return people
+                return axios.get(`http://localhost:3000/people`)
+                    .then(res => res.data);
             }
         }
     }
