@@ -6,7 +6,7 @@ const schema = require('./schema');
 var app = express();
 app.use(`/graphql`, graphqlHTTP({
   schema: schema,
-  rootValue: root,
+  rootValue: global,
   graphiql:true
 }));
 
